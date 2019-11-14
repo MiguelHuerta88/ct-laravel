@@ -16,4 +16,6 @@ Route::get('/', function () {
 });
 
 Route::get('tasks/', 'TasksController@index')->name('tasks');
-Route::post('tasks/create', 'TasksController@create')->name('task.create');
+Route::post('create/task', 'TasksController@create')->name('task.create');
+Route::get('/edit/task/{tasks}', 'TasksController@edit')->name('task.edit');
+Route::post('/edit/task/{tasks}', 'TasksController@update')->name('task.update');

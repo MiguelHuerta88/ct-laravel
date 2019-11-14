@@ -23,8 +23,8 @@
     			<td>{{ $task->created_at }}</td>
     			<td>{{ $task->updated_at }}</td>
     			<td>
-    				<button class="btn btn-warning">Edit</button>
-    				<button class="btn btn-danger">Delete</button>
+    				<a href="{{ route('task.edit', ['tasks' => $task->id]) }}" class="btn btn-warning edit-btn">Edit</a>
+    				<button class="btn btn-danger delete-btn" data-id="{{ $task->id }}">Delete</button>
     			</td>
     		</tr>
 	    @endforeach
@@ -32,8 +32,8 @@
 	</table>
 
 	{{-- create the form to create new task --}}
-	<h2><span class="badge badge-secondary">Add/Edit Task</span></h2>
-	<form method="post" action="{{ route('task.create') }}">
+	<h2><span class="badge badge-secondary">Add Task</span></h2>
+	<form method="post" action="{{ route('task.create') }}" class="create">
 		@csrf
 
 	  <div class="form-group">

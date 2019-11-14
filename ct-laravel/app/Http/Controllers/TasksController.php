@@ -36,6 +36,10 @@ class TasksController extends Controller
     	return view('tasks')->with(compact('tasks'));
     }
 
+    /**
+     * @param CreateTaskRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function create(CreateTaskRequest $request)
     {
         $attributes = $request->only('name','priority');
@@ -51,5 +55,44 @@ class TasksController extends Controller
         }
 
         return redirect()->back()->withInput($attributes);
+    }
+
+    /**
+     * Edit task route
+     * @param Tasks $task
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function edit(Tasks $tasks)
+    {
+        if (!$tasks) return redirect()->to('tasks');
+
+        return view('edit', compact('tasks'));
+    }
+
+    /**
+     * Update function
+     * @param CreateTaskRequest $request
+     * @param Tasks $tasks
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update(CreateTaskRequest $request, Tasks $tasks)
+    {
+        // pull fields
+        $attributes = $request->only('name', 'priority');
+        // update the updated_at field
+        $attributes['updated_at'] = Carbon::now();
+
+        // try to update
+        $tasks->update($attributes);
+
+        return redirect()->to('tasks');
+    }
+
+    public function delete(Tasks $tasks)
+    {
+        // delete
+        $tasks->delete();
+
+        return response()->json(['success' => true]);
     }
 }
