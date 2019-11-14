@@ -14,8 +14,8 @@ class TasksTableSeeder extends Seeder
     {
         DB::table('tasks')->insert([
         	'name' => 'Finish Laravel Project',
-        	'priorty' => 10,
-        	'create_at' => Carbon::now(),
+        	'priority' => 10,
+        	'created_at' => Carbon::now(),
         	'updated_at' => Carbon::now()
         ]);
     }
