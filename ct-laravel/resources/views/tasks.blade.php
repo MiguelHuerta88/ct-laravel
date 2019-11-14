@@ -17,7 +17,7 @@
 	  <tbody>
 	    @foreach($tasks as $index => $task)
 	    	<tr>
-	    		<td>{{ $index }}</td>
+	    		<td>{{ $index + 1 }}</td>
 	    		<td>{{ $task->priority}}
     			<td>{{ $task->name }}</td>
     			<td>{{ $task->created_at }}</td>
@@ -38,13 +38,19 @@
 
 	  <div class="form-group">
 	    <label for="name">Task Name</label>
-	    <input type="text" class="form-control" placeholder="Enter name" required>
+	    <input name="name" type="text" class="form-control @if($errors->has('name'))is-invalid @endif" placeholder="Enter name" value="{{ old('name') }}">
+        @if ($errors->has('name'))
+            <div class="invalid-feedback">{{ $errors->first('name') }}</div>
+        @endif
 	  </div>
 	  <div class="form-group">
-	   	<label for="name">Task Name</label>
-	    <input type="number" class="form-control" placeholder="Enter priority" min="1" max="20" required>
-	  </div>
-	  
+	   	<label for="priority">Priority</label>
+	    <input type="number" class="form-control @if($errors->has('priority'))is-invalid @endif" placeholder="Enter priority" min="1" max="20" name="priority" value="{{ old('priority') }}">
+          @if ($errors->has('priority'))
+              <div class="invalid-feedback">{{ $errors->first('priority') }}</div>
+          @endif
+      </div>
+
 	  <button type="submit" class="btn btn-primary">Submit</button>
 
 	</form>

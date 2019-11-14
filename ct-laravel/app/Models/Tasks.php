@@ -12,4 +12,10 @@ class Tasks extends Model
 	 * @var        string
 	 */
     public $table = 'tasks';
+
+    /**
+     * Fillable columns
+     * @var array
+     */
+    protected $fillable = ['name', 'priority', 'created_at', 'updated_at'];
 }
