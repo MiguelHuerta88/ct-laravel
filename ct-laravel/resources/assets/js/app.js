@@ -17,7 +17,7 @@ var buttons = {
                 success: function() {
                     // remove the record from the browser
                     elem.parent().parent().remove();
-                },
+                }
             });
         }
     }
@@ -26,4 +26,23 @@ var buttons = {
 
 $(document).ready(function(){
     buttons.init();
+
+    $( "#sortable" ).sortable({
+        update: function(event, ui) {
+            // we will send an api request to update priority
+            var newOrder = $("#sortable").sortable("toArray");
+            var apiEndpoint = "/ct-laravel/ct-laravel/public/api/task/update/priority/";
+            for(i = 0; i< newOrder.length; i++) {
+                currentVal = newOrder[i];
+                $.post({
+                    url: apiEndpoint + newOrder[i],
+                    data: {priority: (i+1)},
+                });
+
+                //console.log(newOrder[i]);
+                var id = "tr#" + currentVal;
+                $(id).find('td:first-child').text((i + 1));
+            }
+        }
+    });
 });

@@ -31,7 +31,7 @@ class TasksController extends Controller
     public function index()
     {
     	// we need to pull all the records that we have and send it over to the view
-    	$tasks = $this->tasks->orderBy('priority', 'desc')->get();
+    	$tasks = $this->tasks->orderBy('priority', 'asc')->get();
 
     	return view('tasks')->with(compact('tasks'));
     }
@@ -86,13 +86,5 @@ class TasksController extends Controller
         $tasks->update($attributes);
 
         return redirect()->to('tasks');
-    }
-
-    public function delete(Tasks $tasks)
-    {
-        // delete
-        $tasks->delete();
-
-        return response()->json(['success' => true]);
     }
 }

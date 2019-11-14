@@ -17,4 +17,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('task/delete/{tasks}', 'TasksController@delete')->name('task.delete');
+Route::get('task/delete/{tasks}', 'Api\TasksController@delete')->name('task.delete');
+Route::post('/task/update/priority/{tasks}', 'Api\TasksController@updatePriority');

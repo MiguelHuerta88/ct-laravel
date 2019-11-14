@@ -6,7 +6,7 @@
 	<table class="table">
 	  <thead>
 	    <tr>
-	      <th scope="col">#</th>
+	      {{--<th scope="col">#</th>--}}
 	      <th scope="col">Priority</th>
 	      <th scope="col">Name</th>
 	      <th scope="col">Created</th>
@@ -14,10 +14,10 @@
 	      <td scope="col">Edit/Delete</td>
 	    </tr>
 	  </thead>
-	  <tbody>
+	  <tbody id="sortable">
 	    @foreach($tasks as $index => $task)
-	    	<tr>
-	    		<td>{{ $index + 1 }}</td>
+	    	<tr id="{{ $task->id }}">
+	    		{{--<td>{{ $index + 1 }}</td>--}}
 	    		<td>{{ $task->priority}}
     			<td>{{ $task->name }}</td>
     			<td>{{ $task->created_at }}</td>
